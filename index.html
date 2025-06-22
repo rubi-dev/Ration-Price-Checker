@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ration Price Checker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="ri-store-3-line"></i>
+                <h1>Ration Price Checker</h1>
+            </div>
+            <div class="theme-toggle">
+                <button id="themeToggle" class="theme-button">
+                    <i class="ri-moon-line" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- State and District Selector -->
+        <div class="card" id="selectorCard">
+            <div class="card-content">
+                <h2 class="card-title">Select Location</h2>
+                <div class="selector-grid">
+                    <div class="selector">
+                        <label for="stateSelect">State</label>
+                        <select id="stateSelect" class="select-input">
+                            <option value="">Select State</option>
+                        </select>
+                    </div>
+                    <div class="selector">
+                        <label for="districtSelect">District</label>
+                        <select id="districtSelect" class="select-input" disabled>
+                            <option value="">Select District</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="card" id="searchCard">
+            <div class="card-content">
+                <div class="search-container">
+                    <i class="ri-search-line search-icon"></i>
+                    <input type="search" id="searchInput" placeholder="Search for ration items...">
+                </div>
+            </div>
+        </div>
+
+        <!-- Ration Table -->
+        <div class="card" id="rationCard">
+            <div class="card-header">
+                <h2 class="card-title">Ration Prices</h2>
+                <div class="updated-date" id="lastUpdated"></div>
+            </div>
+            <div class="card-body">
+                <!-- Loading State -->
+                <div id="loadingState" class="state-message">
+                    <div class="icon-container loading">
+                        <i class="ri-loader-4-line"></i>
+                    </div>
+                    <h3>Loading data</h3>
+                    <p>Please wait while we fetch the latest ration prices.</p>
+                </div>
+                
+                <!-- Empty State - No state selected -->
+                <div id="noStateState" class="state-message">
+                    <div class="icon-container">
+                        <i class="ri-map-pin-line"></i>
+                    </div>
+                    <h3>No location selected</h3>
+                    <p>Please select a state to view ration prices.</p>
+                </div>
+                
+                <!-- Empty State - No items found -->
+                <div id="noItemsState" class="state-message hidden">
+                    <div class="icon-container">
+                        <i class="ri-alert-line"></i>
+                    </div>
+                    <h3>No items found</h3>
+                    <p>Try adjusting your search or filter to find what you're looking for.</p>
+                </div>
+                
+                <!-- Table with items -->
+                <div id="tableContainer" class="hidden">
+                    <div class="table-actions">
+                        <button id="exportButton" class="btn btn-primary">
+                            <i class="ri-download-2-line"></i> Export PDF
+                        </button>
+                        <button id="printButton" class="btn btn-secondary">
+                            <i class="ri-printer-line"></i> Print
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="rationTable">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Category</th>
+                                    <th>Unit Price</th>
+                                    <th>Monthly Limit</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rationTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="card" id="infoCard">
+            <div class="card-content">
+                <div class="info-content">
+                    <div class="info-icon">
+                        <i class="ri-information-line"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>About Ration Prices</h3>
+                        <p>Prices shown are subsidized under the Public Distribution System (PDS) and may vary by state. The monthly limits are based on household size and card type (AAY, BPL, APL).</p>
+                        <p>For more details, contact your local Fair Price Shop or call the PDS helpline at <a href="tel:1800-123-4567">1800-123-4567</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Smart Ration Price Checker | Public Distribution System Information</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
